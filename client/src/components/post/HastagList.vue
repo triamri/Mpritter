@@ -1,6 +1,7 @@
 <template>
   <div style="padding-top: 20px;">
-    <time-summary v-for="tweet in tweetList" :key="tweet._id" :tweet="tweet"></time-summary>
+    {{ $route.query }}
+    <time-summary v-for="tweet in getStak" :key="tweet._id" :tweet="tweet"></time-summary>
   </div>
 </template>
 <script>
@@ -14,7 +15,10 @@ export default {
     ...mapState([
       'tweetList'
     ]),
-    getHastag () {
+    getStak () {
+      return this.tweetList.filter(function (obj) {
+        return obj.hastag === '#done'
+      })
     }
   },
   methods: {
