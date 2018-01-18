@@ -2,6 +2,7 @@ const express = require('express');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const cors = require('cors');
 mongoose.connect(`mongodb://triamri:123456@ds261527.mlab.com:61527/mpritter`)
 
 const app = express();
@@ -11,6 +12,7 @@ const app = express();
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cors());
 
 app.use('/api/users', require('./routes/users'));
 app.use('/api/tweets', require('./routes/tweets'));
