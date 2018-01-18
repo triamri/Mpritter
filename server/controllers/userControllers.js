@@ -42,11 +42,25 @@ let signIn = (req, res) => {
         }, process.env.RAHASIA, (err, token) => {
           res.status(200).json({
             msg: 'Login Sukses',
-            data: token
+            data: token,
+            user: result
           })
         });
       }
 
+    })
+    .catch((err) => {
+      res.status(500).json(err);
+    })
+}
+
+let getUser = (req, res) => {
+  User.findById(req.getUser.id)
+    .then((result) => {
+      res.status(200).json({
+        msg: 'Sukses',
+        data: result
+      })  
     })
     .catch((err) => {
       res.status(500).json(err);
@@ -78,5 +92,6 @@ let editUser = (req, res) => {
 module.exports = {
   signIn,
   signUp,
-  editUser
+  editUser,
+  getUser
 }

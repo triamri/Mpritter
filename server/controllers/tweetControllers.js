@@ -44,6 +44,7 @@ let removeTweet = (req, res) => {
 
 let allTweet = (req, res) => {
   Tweet.find()
+  .populate('userID')
   .then((results) => {
     res.status(200).json({
       msg: 'sukses',
@@ -56,6 +57,7 @@ let allTweetuser = (req, res) => {
   Tweet.find({
     userID: req.getUser.id
   })
+  .populate('userID')
   .then((results) => {
     res.status(200).json({
       msg: 'sukses',

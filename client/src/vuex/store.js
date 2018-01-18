@@ -35,7 +35,7 @@ const store = new Vuex.Store({
       axios.post(`http://localhost:3000/api/users/signup`, payload)
         .then(({ data }) => {
           router.push({
-            name: 'login'
+            name: 'Login'
           })
         })
         .catch(err => console.log(err))
@@ -44,9 +44,9 @@ const store = new Vuex.Store({
       axios.post(`http://localhost:3000/api/users/signin`, payload)
         .then(({ data }) => {
           localStorage.setItem('token', data.data)
-          commit('setLogin', payload)
+          commit('setLogin', data.user)
           router.push({
-            name: 'home'
+            name: 'Dashboard'
           })
         })
         .catch(err => console.log(err))
@@ -54,6 +54,7 @@ const store = new Vuex.Store({
     getAllTweet ({ commit }) {
       axios.get(`http://localhost:3000/api/tweets/all`)
         .then(({ data }) => {
+          console.log(data.data)
           commit('setList', data.data)
         })
         .catch(err => console.log(err))
