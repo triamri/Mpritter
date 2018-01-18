@@ -53,7 +53,30 @@ let signIn = (req, res) => {
     })
 }
 
+let editUser = (req, res) => {
+
+  let updateUser = {
+    first_name : req.body.first_name,
+    last_name : req.body.last_name
+  }
+
+  User.update({
+    _id: req.getUser.id
+  }, updateUser)
+    .then((result) => {
+      res.status(200).json({
+        msg: 'Sukses',
+        data: result
+      });
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    })
+
+}
+
 module.exports = {
   signIn,
-  signUp
+  signUp,
+  editUser
 }

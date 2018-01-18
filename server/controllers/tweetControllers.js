@@ -42,8 +42,31 @@ let removeTweet = (req, res) => {
   })
 }
 
-// let searchHastag = (req, res)
+let allTweet = (req, res) => {
+  Tweet.find()
+  .then((results) => {
+    res.status(200).json({
+      msg: 'sukses',
+      data: results
+    })
+  })
+}
+
+let allTweetuser = (req, res) => {
+  Tweet.find({
+    userID: req.getUser.id
+  })
+  .then((results) => {
+    res.status(200).json({
+      msg: 'sukses',
+      data: results
+    })
+  })
+}
+
 module.exports = {
   createTweet,
-  removeTweet
+  removeTweet,
+  allTweet,
+  allTweetuser
 }
