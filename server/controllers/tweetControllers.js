@@ -1,8 +1,23 @@
 const Tweet = require('../models/tweetModels');
 
 let createTweet = (req, res) => {
+
+  const get = req.body.post.split(' ')
+
+  const hastag = []
+
+  for(let i=0; i < get.length; i++ ){
+    let setData = get[i].split(''); 
+    setData.forEach(function(element) {
+      if (element == '#'){
+        hastag.push(get[i])
+      }
+    });
+  }
+
   let newTweet = new Tweet({
     post: req.body.post,
+    hastag: hastag || [],
     userID: req.getUser.id
   })
   newTweet.save()
@@ -13,6 +28,7 @@ let createTweet = (req, res) => {
     })
   })
   .catch(err => res.status(500).json(err))
+  
 }
 
 let removeTweet = (req, res) => {
