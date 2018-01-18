@@ -8,7 +8,10 @@ const userSchema = new Schema({
   last_name: String,
   email: String,
   password: String,
-  foto: String
+  foto: {
+    type: String,
+    default: ''
+  }
 });
 
 userSchema.pre('save', function(next) {
