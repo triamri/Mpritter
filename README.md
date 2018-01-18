@@ -7,12 +7,12 @@ A simple micro blogging app
 
  user
  
- /api/users/signup
- /api/users/signin
- /api/users/update/:id
+ /api/users/signup <br />
+ /api/users/signin <br />
+ /api/users/update/:id <br />
 
  tweet
 
- /api/tweets/post
- /api/tweets/hastag
- /api/tweets/remove/:id
+ /api/tweets/post <br />
+ /api/tweets/hastag <br />
+ /api/tweets/remove/:id <br /> 
